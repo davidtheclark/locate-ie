@@ -8,11 +8,11 @@ Based on [`karma-ie-launcher`](https://github.com/karma-runner/karma-ie-launcher
 
 ### `location = require('ie-location')`
 
-Returns the path to IE as a string.
+Returns the path to IE as a string, or `null` if IE is not found.
 
 ### CLI Usage
 
-`stdout` path to IE:
+`stdout` path to IE (or `null`):
 ```bash
 > ie-location
 # C:\Program Files\Internet Explorer\iexplore.exe
