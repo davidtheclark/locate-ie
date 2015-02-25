@@ -2,7 +2,7 @@
 
 Approximates the current location of IE on your system.
 
-Based on [`chrome-location`](https://github.com/hughsk/chrome-location).
+Based on [`karma-ie-launcher`](https://github.com/karma-runner/karma-ie-launcher) and [`chrome-location`](https://github.com/hughsk/chrome-location).
 
 ## Usage
 
