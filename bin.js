@@ -1,3 +1,7 @@
 #!/usr/bin/env node
 
-console.log(require('./'));
+var locateIe = require('./');
+
+locateIe().then(function(r) {
+  console.log(r);
+});

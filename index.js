@@ -1,24 +1,38 @@
 var fs = require('fs');
+var Promise = require('es6-promise').Promise;
+var queue = require('queue-async');
 
-module.exports = getWinPath();
+var win = process.platform === 'win32';
 
-function getWinPath() {
-  if (process.platform !== 'win32') { return null; }
+module.exports = function(cb) {
+  return new Promise(function(resolve) {
+    var finisher = cb || function(r) {
+      resolve(r);
+    };
 
-  var suffix = '\\Internet Explorer\\iexplore.exe';
-  var prefixes = [
-    process.env.PROGRAMW6432,
-    process.env.PROGRAMFILES,
-    process.env['PROGRAMFILES(X86)']
-  ];
-  var exe;
-
-  for (var i = 0; i < prefixes.length; i++) {
-    exe = prefixes[i] + suffix;
-    if (fs.existsSync(exe)) {
-      return exe;
+    if (!win) {
+      finisher(null);
+      return;
     }
-  }
 
-  return null;
+    var suffix = '\\Internet Explorer\\iexplore.exe';
+    var prefixes = [
+      process.env.LOCALAPPDATA,
+      process.env.PROGRAMFILES,
+      process.env['PROGRAMFILES(X86)']
+    ];
+
+    queue(1)
+      .defer(tryLocation, prefixes[0] + suffix, finisher)
+      .defer(tryLocation, prefixes[1] + suffix, finisher)
+      .defer(tryLocation, prefixes[2] + suffix, finisher)
+      .awaitAll(function() { finisher(null); });
+  });
+}
+
+function tryLocation(p, success, next) {
+  fs.exists(p, function(exists) {
+    if (exists) success(p);
+    else next();
+  });
 }
