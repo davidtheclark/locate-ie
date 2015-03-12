@@ -1,10 +1,10 @@
 {
-  "name": "ie-location",
+  "name": "locate-ie",
   "version": "0.2.0",
-  "description": "Approximates the current location of Internet Explorer on your system",
+  "description": "Finds Internet Explorer on your system",
   "main": "index.js",
   "bin": {
-    "ie-location": "bin.js"
+    "locate-ie": "bin.js"
   },
   "license": "MIT",
   "scripts": {},
@@ -20,18 +20,17 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git://github.com/davidtheclark/ie-location.git"
+    "url": "git://github.com/davidtheclark/locate-ie.git"
   },
   "keywords": [
     "Internet Explorer",
     "ie",
-    "spawn",
     "location",
-    "process",
-    "guesstimate"
+    "find",
+    "browser"
   ],
-  "homepage": "https://github.com/davidtheclark/ie-location",
+  "homepage": "https://github.com/davidtheclark/locate-ie",
   "bugs": {
-    "url": "https://github.com/davidtheclark/ie-location/issues"
+    "url": "https://github.com/davidtheclark/locate-ie/issues"
   }
 }
